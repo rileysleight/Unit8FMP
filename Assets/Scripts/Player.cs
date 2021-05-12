@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -72,5 +73,13 @@ public class Player : MonoBehaviour
         //}
 
         rb.velocity = new Vector2(xVelocity, yVelocity);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Obstacle"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
