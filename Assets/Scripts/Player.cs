@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using Cinemachine; 
 
 public class Player : MonoBehaviour
 {
     //private Animator anim;
     private Rigidbody2D rb;
     public float speed;
-
+    //public Panel myPanel;
+    public GameObject dialougue1;
+    public GameObject puzzle1;
+    public int lives = 5;
+    public GameObject Block;
+    
 
     void Start()
     {
@@ -22,7 +29,14 @@ public class Player : MonoBehaviour
         float xVelocity = 0;
         float yVelocity = 0;
         float speed = 5; 
+    
 
+        if (lives == 0)
+        {
+            Debug.Log("Dead");
+            SceneManager.LoadScene(0);
+        }
+        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //anim.SetBool("Walk Left",true);
@@ -79,7 +93,42 @@ public class Player : MonoBehaviour
     {
         if(other.CompareTag("Obstacle"))
         {
-            SceneManager.LoadScene(0);
+            LoseLife();
+            transform.position = new Vector2(35, 0);
+        }
+
+        if(other.CompareTag("Telly1"))
+        {
+            dialougue1.SetActive(true);
+        }
+
+        if(other.CompareTag("Puzzle1"))
+        {
+            Debug.Log("Help");
+            puzzle1.SetActive(true);
         }
     }
+
+    public int LoseLife()
+    {
+        lives--;
+        return lives;
+    }
+
+    
+
+    public /*int*/ void IncorrectChoice()
+    {
+        LoseLife();
+        Debug.Log("Wrong");
+        transform.position = new Vector2(84, 0);
+    }
+
+    public void CorrectChoice()
+    {
+        Debug.Log("Right");
+        Destroy(Block);
+        transform.position = new Vector2(88, 0);
+    }
+
 }

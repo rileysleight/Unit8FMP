@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Turn
   - Obstacle
-  - Puzzle
+  - Block
+  - Telly1
+  - Puzzle1
   layers:
   - Default
   - TransparentFX
