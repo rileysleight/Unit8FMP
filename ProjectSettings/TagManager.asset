@@ -9,6 +9,7 @@ TagManager:
   - Block
   - Telly1
   - Puzzle1
+  - Key
   layers:
   - Default
   - TransparentFX
