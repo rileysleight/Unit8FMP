@@ -6,23 +6,29 @@ public class ObstacleTurn1 : MonoBehaviour
 {   
     public float speed;
     public bool MoveUp;
+    public Rigidbody2D rb;
+    public float yVelocity;
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     
     void Update()
     {
+    
+        float speed = 10; 
+
         if (MoveUp)
         {
-            transform.Translate(0, 2 * Time.deltaTime * speed, 0);
+            yVelocity=speed;
         }
         else
         {
-            transform.Translate(0, -2 * Time.deltaTime * speed, 0);
+            yVelocity=-speed;
         }
+        rb.velocity = new Vector2(0, yVelocity);
     }
 
     void OnTriggerEnter2D(Collider2D trig)
