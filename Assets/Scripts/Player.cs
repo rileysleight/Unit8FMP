@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     //private Animator anim;
     private Rigidbody2D rb;
     public float speed;
-    //public Panel myPanel;
     public GameObject dialougue1;
     public GameObject puzzle1;
     public int lives = 5;
@@ -34,7 +33,7 @@ public class Player : MonoBehaviour
         if (lives == 0)
         {
             Debug.Log("Dead");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         
         if (Input.GetKey(KeyCode.LeftArrow))
@@ -107,6 +106,21 @@ public class Player : MonoBehaviour
             Debug.Log("Help");
             puzzle1.SetActive(true);
         }
+
+        if(other.CompareTag("Key"))
+        {
+            gameObject.tag = "PlayerKey";
+            Destroy(other.gameObject);
+        }
+
+        if(other.CompareTag("Door"))
+        {
+            if(gameObject.tag == "PlayerKey")
+            {
+                SceneManager.LoadScene (2);
+            }
+            
+        }
     }
 
     public int LoseLife()
@@ -115,9 +129,8 @@ public class Player : MonoBehaviour
         return lives;
     }
 
-    
 
-    public /*int*/ void IncorrectChoice()
+    public void IncorrectChoice()
     {
         LoseLife();
         Debug.Log("Wrong");
