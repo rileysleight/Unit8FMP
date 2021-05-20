@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public GameObject puzzle1;
     public int lives = 5;
     public GameObject Block;
+    public GameObject puzzle2;
     
 
     void Start()
@@ -90,6 +91,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //LEVEL 1
         if(other.CompareTag("Obstacle"))
         {
             LoseLife();
@@ -120,6 +122,18 @@ public class Player : MonoBehaviour
                 SceneManager.LoadScene (2);
             }
             
+        }
+
+        //LEVEL 2
+        if(other.CompareTag("Obstacle2"))
+        {
+            LoseLife();
+            transform.position = new Vector2(35, 0);
+        }
+        
+        if(other.CompareTag("Puzzle2"))
+        {
+            puzzle2.SetActive(true);
         }
     }
 

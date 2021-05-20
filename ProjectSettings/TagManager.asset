@@ -12,6 +12,9 @@ TagManager:
   - Key
   - Door
   - PlayerKey
+  - Puzzle2
+  - Obstacle2
+  - Turn2
   layers:
   - Default
   - TransparentFX
