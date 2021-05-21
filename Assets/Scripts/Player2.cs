@@ -5,16 +5,15 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cinemachine; 
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     //private Animator anim;
     private Rigidbody2D rb;
     public float speed;
     public GameObject dialougue1;
-    public GameObject puzzle1;
     public int lives = 5;
     public GameObject Block;
-    
+    public GameObject puzzle2;
     public GameObject Life1;
     public GameObject Life2;
     public GameObject Life3;
@@ -22,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject Life5;
     public GameObject hud;
     public GameObject pause;
+
 
     
 
@@ -115,18 +115,17 @@ public class Player : MonoBehaviour
         //}
 
         rb.velocity = new Vector2(xVelocity, yVelocity);
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause.SetActive(true);
+            hud.SetActive(false);
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        //LEVEL 1
-        if(other.CompareTag("Obstacle"))
+        if(other.CompareTag("Obstacle2"))
         {
             LoseLife();
             transform.position = new Vector2(35, 0);
@@ -137,26 +136,11 @@ public class Player : MonoBehaviour
             dialougue1.SetActive(true);
         }
 
-        if(other.CompareTag("Puzzle1"))
+        if(other.CompareTag("Puzzle2"))
         {
             Debug.Log("Help");
             hud.SetActive(false);
-            puzzle1.SetActive(true);
-        }
-
-        if(other.CompareTag("Key"))
-        {
-            gameObject.tag = "PlayerKey";
-            Destroy(other.gameObject);
-        }
-
-        if(other.CompareTag("Door"))
-        {
-            if(gameObject.tag == "PlayerKey")
-            {
-                SceneManager.LoadScene (2);
-            }
-            
+            puzzle2.SetActive(true);
         }
 
         if(other.CompareTag("LDoor"))
@@ -175,8 +159,6 @@ public class Player : MonoBehaviour
             }
             
         }
-
-
     }
 
     public int LoseLife()
@@ -202,7 +184,8 @@ public class Player : MonoBehaviour
         hud.SetActive(true);
     }
 
-    public void QuitToMenu () 
+       
+   public void QuitToMenu (string Menu) 
    {
       SceneManager.LoadScene(0);
    }
@@ -210,6 +193,6 @@ public class Player : MonoBehaviour
    public void ResumeGame()
    {
       pause.SetActive(false);
+      hud.SetActive(true);
    }
-
 }

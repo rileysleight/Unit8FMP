@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: 2d2b7952c3e43ad4ba823240c3585bf0
+  - enabled: 1
+    path: Assets/Scenes/LDoor.unity
+    guid: bdd0cdeabc1f47444a9419efdbbdd53b
+  - enabled: 1
+    path: Assets/Scenes/RDoor.unity
+    guid: 8e4636117a901c649a472fe45fc318f2
   m_configObjects: {}
