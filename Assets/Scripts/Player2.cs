@@ -21,13 +21,14 @@ public class Player2 : MonoBehaviour
     public GameObject Life5;
     public GameObject hud;
     public GameObject pause;
+    private Animator anim;
 
 
     
 
     void Start()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -67,52 +68,52 @@ public class Player2 : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //anim.SetBool("Walk Left",true);
+            anim.SetBool("WalkLeft",true);
             xVelocity =-speed;
         }
-        //else
-        //{
-        //    anim.SetBool("Walk Left", false);
-        //}
+        else
+        {
+            anim.SetBool("WalkLeft", false);
+        }
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            //anim.SetBool("Walk Right", true);
+            anim.SetBool("WalkRight", true);
             xVelocity=speed;
         }
-        //else
-        //{
-        //    anim.SetBool("Walk Right", false);
-        //}
+        else
+        {
+            anim.SetBool("WalkRight", false);
+        }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-        //    anim.SetBool("Walk Up", true);
+            anim.SetBool("WalkUp", true);
             yVelocity=speed;
         }
-        //else
-        //{
-        //   anim.SetBool("Walk Up", false);
-        //}
+        else
+        {
+           anim.SetBool("WalkUp", false);
+        }
 
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            //anim.SetBool("Walk Down", true);
+            anim.SetBool("WalkDown", true);
             yVelocity=-speed;
         }
-        //else
-        //{
-        //    anim.SetBool("Walk Down", false);
-        //}
+        else
+        {
+            anim.SetBool("WalkDown", false);
+        }
         
 
-        //if ((xVelocity == 0) && (yVelocity == 0))
-        //{
-        //    anim.SetBool("Walk Down", false);
-        //    anim.SetBool("Walk Up", false);
-        //    anim.SetBool("Walk Left", false);
-        //    anim.SetBool("Walk Right", false);
-        //}
+        if ((xVelocity == 0) && (yVelocity == 0))
+        {
+            anim.SetBool("WalkDown", false);
+            anim.SetBool("WalkUp", false);
+            anim.SetBool("WalkLeft", false);
+            anim.SetBool("WalkRight", false);
+        }
 
         rb.velocity = new Vector2(xVelocity, yVelocity);
         
